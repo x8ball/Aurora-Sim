@@ -1,0 +1,135 @@
+<!-- saved from url=(0007)http:// -->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>AIMLBot.cAIMLLoader</TITLE>
+<LINK REL=STYLESHEET HREF="../CommentReport.css" TYPE="text/css">
+</HEAD>
+<BODY topmargin=0 rightmargin=0 leftmargin=0 style="background-image: url(../titletile.jpg); background-repeat:repeat-x; background-position: 0 0;" >
+<DIV CLASS="PageHeading">AIMLBot.cAIMLLoader Class</DIV>
+<DIV CLASS="Description">
+
+Takes care of processing and loading AIML files into the graphmaster
+<P>
+
+</DIV>
+<IMG src="../GradLeft.jpg" width=7 height=378 alt="" border="0" style="position:absolute; left:10; top:18;z-Index:2">
+<IMG src="../GradTop.jpg" width=352 height=7 alt="" border="0" align="top" style="position:absolute; left:10; top:18; z-index:1">
+<DIV CLASS="Remarks">
+<SPAN CLASS="RemarkHdrX">Access: </SPAN>Public</DIV>
+<DIV CLASS="Remarks">
+<SPAN CLASS="RemarkHdrX">Base Classes: </SPAN>Object</DIV>
+<TABLE CLASS="InfoTable" cellpadding=0 cellspacing=0>
+<TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD valign=top align=left width=9 bgcolor="#cccc66"><IMG SRC="../graycorner.jpg" align=top></TD>
+<TD CLASS="TableLightLabel" WIDTH=206>Members</TD>
+<TD CLASS="TableLightLabel" >Description</TD>
+<TD width=20>&nbsp;</TD>
+</TR>
+<TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP4.HTM" TARGET="CNTFRAME">message</A></TD>
+<TD CLASS="TableLightDesc">
+Holds the message the the cAIMLLoader returns to the bot that calls it
+for inclusion in the bot's logfile
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP5.HTM" TARGET="CNTFRAME">myGraphMaster</A></TD>
+<TD CLASS="TableLightDesc">
+represents the Graphmaster to be populated by the AIML files
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP7.HTM" TARGET="CNTFRAME">counter</A></TD>
+<TD CLASS="TableLightDesc">
+counts the number of categories added to the bot's brain
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP8.HTM" TARGET="CNTFRAME">processtopic</A></TD>
+<TD CLASS="TableLightDesc">
+processes "topic" nodes and adds any categories found as children into the 
+graphmaster's set of nodes
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP9.HTM" TARGET="CNTFRAME">processcategory</A></TD>
+<TD CLASS="TableLightDesc">
+processes "category" nodes into cCategory objects for the graphmaster
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP10.HTM" TARGET="CNTFRAME">processcategory</A></TD>
+<TD CLASS="TableLightDesc">
+processes "category" nodes into cCategory objects for the graphmaster
+topic tag
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP11.HTM" TARGET="CNTFRAME">addfile</A></TD>
+<TD CLASS="TableLightDesc">
+Processes the categories found within a certain file 
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP12.HTM" TARGET="CNTFRAME">processdirectory</A></TD>
+<TD CLASS="TableLightDesc">
+Given a directory path get the aiml files and extract the categories from them
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP13.HTM" TARGET="CNTFRAME">cAIMLLoader</A></TD>
+<TD CLASS="TableLightDesc">
+Doh! This is a constructor - gets the graphmaster brain to be loaded and 
+resets everything to nice values for the logs :-)
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP14.HTM" TARGET="CNTFRAME">loadAIML</A></TD>
+<TD CLASS="TableLightDesc">
+Given a path to a directory, this method will look for *.aiml files, process them
+into cCategory objects and add them to the bot's "brain". Returns any messages about
+the status of the upload into the GraphMaster brain.
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR></TABLE>
+<DIV CLASS="RemarkHdr">Remarks:</DIV>
+<DIV CLASS="Remarks">
+
+Used the specification of AIML v.1.0.1 as the basis for storing the various
+categories. See http://www.alicebot.org/TR/2001/WD-aiml/ for more information.
+<P>
+</DIV>
+</BODY>
+</HTML>

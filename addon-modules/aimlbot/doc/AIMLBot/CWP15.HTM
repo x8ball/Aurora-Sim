@@ -1,0 +1,177 @@
+<!-- saved from url=(0007)http:// -->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>AIMLBot.cBot</TITLE>
+<LINK REL=STYLESHEET HREF="../CommentReport.css" TYPE="text/css">
+</HEAD>
+<BODY topmargin=0 rightmargin=0 leftmargin=0 style="background-image: url(../titletile.jpg); background-repeat:repeat-x; background-position: 0 0;" >
+<DIV CLASS="PageHeading">AIMLBot.cBot Class</DIV>
+<DIV CLASS="Description">
+
+Encapsulates a single instance of an AIML parsing chatterbot.
+See http://www.alicebot.org/TR/2001/WD-aiml/ for the specifications.
+<P>
+
+</DIV>
+<IMG src="../GradLeft.jpg" width=7 height=378 alt="" border="0" style="position:absolute; left:10; top:18;z-Index:2">
+<IMG src="../GradTop.jpg" width=352 height=7 alt="" border="0" align="top" style="position:absolute; left:10; top:18; z-index:1">
+<DIV CLASS="Remarks">
+<SPAN CLASS="RemarkHdrX">Access: </SPAN>Public</DIV>
+<DIV CLASS="Remarks">
+<SPAN CLASS="RemarkHdrX">Base Classes: </SPAN>Object</DIV>
+<TABLE CLASS="InfoTable" cellpadding=0 cellspacing=0>
+<TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD valign=top align=left width=9 bgcolor="#cccc66"><IMG SRC="../graycorner.jpg" align=top></TD>
+<TD CLASS="TableLightLabel" WIDTH=206>Members</TD>
+<TD CLASS="TableLightLabel" >Description</TD>
+<TD width=20>&nbsp;</TD>
+</TR>
+<TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP16.HTM" TARGET="CNTFRAME">GraphMaster</A></TD>
+<TD CLASS="TableLightDesc">
+the Graphmaster structure for this particular bot
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP17.HTM" TARGET="CNTFRAME">Substitutions</A></TD>
+<TD CLASS="TableLightDesc">
+The substitutions list to be applied during the normalisation process
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP18.HTM" TARGET="CNTFRAME">Splitters</A></TD>
+<TD CLASS="TableLightDesc">
+Contains all the "tokens" used when splitting sentences during the normalisation
+process. The default initialisation adds ".", "!" and "?" for you.
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP19.HTM" TARGET="CNTFRAME">Predicates</A></TD>
+<TD CLASS="TableLightDesc">
+Holds the list of predicates (the keys) and their associated values
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP20.HTM" TARGET="CNTFRAME">size</A></TD>
+<TD CLASS="TableLightDesc">
+keeps tabs of the number of categories currently stored in the Graphmaster brain
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP21.HTM" TARGET="CNTFRAME">Size</A></TD>
+<TD CLASS="TableLightDesc">
+The number of categories currently stored in the Graphmaster brain
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP23.HTM" TARGET="CNTFRAME">getAIMLFileList</A></TD>
+<TD CLASS="TableLightDesc">
+Returns an ArrayList of the names of all the .aiml files found within a 
+particular directory
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP24.HTM" TARGET="CNTFRAME">loadPredicates</A></TD>
+<TD CLASS="TableLightDesc">
+Populates the predicates associated with the bot
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP25.HTM" TARGET="CNTFRAME">init</A></TD>
+<TD CLASS="TableLightDesc">
+Initialises the bot with the default (core brain) settings
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP26.HTM" TARGET="CNTFRAME">init</A></TD>
+<TD CLASS="TableLightDesc">
+Initialises the bot with the default (core brain) settings
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP27.HTM" TARGET="CNTFRAME">grabSplitters</A></TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP28.HTM" TARGET="CNTFRAME">cBot</A></TD>
+<TD CLASS="TableLightDesc">
+Initialises and sets up the bot and its related resources (such as the GraphMaster)
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP29.HTM" TARGET="CNTFRAME">cBot</A></TD>
+<TD CLASS="TableLightDesc">
+Initialises and sets up the bot and its related resources (such as the GraphMaster)
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP30.HTM" TARGET="CNTFRAME">chat</A></TD>
+<TD CLASS="TableLightDesc">
+Takes the user's raw input and returns a cResponse object for this bot
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP32.HTM" TARGET="CNTFRAME">log</A></TD>
+<TD CLASS="TableLightDesc">
+Allows for the logging of messages about this bot from other objects in the 
+AIML system
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP33.HTM" TARGET="CNTFRAME">getPredicate</A></TD>
+<TD CLASS="TableLightDesc">
+Returns the value of a read-only bot predicate. Returns "" if the predicate doesn't exist
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR></TABLE>
+</BODY>
+</HTML>

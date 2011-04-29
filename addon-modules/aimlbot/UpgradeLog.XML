@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="AIMLBot">
+</Property><Property Name="Solution File" Value="C:\aimlbot\aimlbot\AIMLBot.sln">
+</Property><Property Name="User Options File" Value="C:\aimlbot\aimlbot\AIMLBot.suo">
+</Property><Property Name="Date" Value="April-25-11">
+</Property><Property Name="Time" Value="23:00 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="AIMLBot.sln" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\AIMLBot.sln">
+</Event><Event ErrorLevel="0" Project="" Source="AIMLBot.suo" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\AIMLBot.suo">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="AIMLBot.csproj" Description="Project file successfully backed up as C:\aimlbot\aimlbot\Backup\AIMLBot.csproj">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="AIMLBot.csproj.user" Description="Project user file successfully backed up as C:\aimlbot\aimlbot\Backup\AIMLBot.csproj.user">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="AssemblyInfo.cs" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="cAIMLLoader.cs" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\cAIMLLoader.cs">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="cBot.cs" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\cBot.cs">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="cCategory.cs" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\cCategory.cs">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="cGlobals.cs" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\cGlobals.cs">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="cGraphMaster.cs" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\cGraphMaster.cs">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="cNodeMapper.cs" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\cNodeMapper.cs">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="cNormalizer.cs" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\cNormalizer.cs">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="cProcessor.cs" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\cProcessor.cs">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="cResponse.cs" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\cResponse.cs">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="cUser.cs" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\cUser.cs">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="cUsers.cs" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\cUsers.cs">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="AIML.zip" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\AIML.zip">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="LICENSE.txt" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\LICENSE.txt">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="README.txt" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\README.txt">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="TODO.txt" Description="File successfully backed up as C:\aimlbot\aimlbot\Backup\TODO.txt">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="AIMLBot.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="AIMLBot" Source="AIMLBot.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="AIMLBot.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="AIMLBot.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="AIMLBot" Source="AIMLBot.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

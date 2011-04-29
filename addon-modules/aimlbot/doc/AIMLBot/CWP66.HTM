@@ -1,0 +1,97 @@
+<!-- saved from url=(0007)http:// -->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>AIMLBot.cNodeMapper</TITLE>
+<LINK REL=STYLESHEET HREF="../CommentReport.css" TYPE="text/css">
+</HEAD>
+<BODY topmargin=0 rightmargin=0 leftmargin=0 style="background-image: url(../titletile.jpg); background-repeat:repeat-x; background-position: 0 0;" >
+<DIV CLASS="PageHeading">AIMLBot.cNodeMapper Class</DIV>
+<DIV CLASS="Description">
+
+Represents an individual node in the AIML "brain" and maps the branches in the 
+Graphmaster structure. 
+<P>
+
+</DIV>
+<IMG src="../GradLeft.jpg" width=7 height=378 alt="" border="0" style="position:absolute; left:10; top:18;z-Index:2">
+<IMG src="../GradTop.jpg" width=352 height=7 alt="" border="0" align="top" style="position:absolute; left:10; top:18; z-index:1">
+<DIV CLASS="Remarks">
+<SPAN CLASS="RemarkHdrX">Access: </SPAN>Public</DIV>
+<DIV CLASS="Remarks">
+<SPAN CLASS="RemarkHdrX">Base Classes: </SPAN>Object</DIV>
+<TABLE CLASS="InfoTable" cellpadding=0 cellspacing=0>
+<TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD valign=top align=left width=9 bgcolor="#cccc66"><IMG SRC="../graycorner.jpg" align=top></TD>
+<TD CLASS="TableLightLabel" WIDTH=206>Members</TD>
+<TD CLASS="TableLightLabel" >Description</TD>
+<TD width=20>&nbsp;</TD>
+</TR>
+<TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP70.HTM" TARGET="CNTFRAME">htChildren</A></TD>
+<TD CLASS="TableLightDesc">
+Represents the branches from this nodemapper
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP71.HTM" TARGET="CNTFRAME">thisCategory</A></TD>
+<TD CLASS="TableLightDesc">
+the Category that is to be returned if this node is matched
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP72.HTM" TARGET="CNTFRAME">sWord</A></TD>
+<TD CLASS="TableLightDesc">
+the word that identifies this nodemapper at the parent nodemapper (i.e. the
+nodemappers id within it's parent node)
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP73.HTM" TARGET="CNTFRAME">cNodeMapper</A></TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP74.HTM" TARGET="CNTFRAME">evaluate</A></TD>
+<TD CLASS="TableLightDesc">
+Searches the nodemapper with the input string
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP75.HTM" TARGET="CNTFRAME">addCat</A></TD>
+<TD CLASS="TableLightDesc">
+Adds a category to the graphmaster structure
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR></TABLE>
+<DIV CLASS="RemarkHdr">Remarks:</DIV>
+<DIV CLASS="Remarks">
+
+This class incorporates much of the donkey work of
+searching the graphmaster structure to the specifications defined at:
+
+http://www.alicebot.org/TR/2001/WD-aiml/
+
+Specifically, the precedence and processing of the "_" and "*" wildcards as defined
+by the AIML standard (referenced above)/. 
+<P>
+</DIV>
+</BODY>
+</HTML>

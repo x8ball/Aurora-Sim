@@ -1,0 +1,57 @@
+ToDo List:
+
+	* Improve the efficiency of the code. Especially in the cAIMLLoader class
+	where the graphmaster nodes are populated from the XML. For example, not 
+	using the DOM based XmlDocument class for loading the XML. The sequential 
+	XmlReaderClass is probably a lot faster.
+	
+	* Tidy up the various kludges that exist at various points in the code.
+	
+	* The AIMLBot was written in a relatively short space of time (two weeks).
+	Being able to study other implementations of AIML - especially those in 
+	PHP and Java accounted for a lot of this speed. The downside is that some
+	of the code is not C#ish. Now that I know the language a lot better I'll
+	improve the style of the code sometime.
+	
+	* Some of the AIML syntax is not implemented (although most (99%) of it is).
+	Check out the "processtag" method of the cResponse class to start
+	implementing the CONDITION, LEARN, SYSTEM and JAVASCRIPT tags.
+	
+	* It should be very easy to implement cutom tags. I've already implemented
+	a Wikipedia (http://en.wikipedia.org/) tag that searches for information on
+	subjects unknown to the bot (not included in this version). I also had a lot
+	of fun with BabelFish translating text for the Bot (with entertaining 
+	results)! I'm sure there are lots of web-services / applications this code
+	could be plugged into.
+	
+	* The bot could be improved to make it multi-threading and generally more
+	robust. This as part of my original plan but time got in the way. :-(
+	
+	* It'd be nice to see this DLL used in all sorts of creative ways. I've
+	got it working in a Windows.Forms application, as a Windows service and 
+	as a Web service. It would be nice include it in an AIML editor. Another
+	thought is to implement it as a smart client with remote (and locally 
+	cached) aiml files. Perhaps using late binding to import custom libraries
+	that deal with specialist AIML (and associated new tags) is another way 
+	to improve the software. 
+	
+	* I wrote it with Mono in mind. PLEASE, PLEASE, PLEASE, PLEASE don't break it.
+	If you change the code pay special attention to file manipulation. For
+	example:
+	
+		string dir = "tmp";
+		string file = "myfile.aiml";
+		
+		// WRONG
+		string wrongpath = dir+"/"+file;
+		
+		//RIGHT
+		string rightpath = System.IO.Path.Combine(dir,file);
+		
+	Check out the excellent "Mono: A Developer's Notebook" by Edd Dumbill and 
+	Niel M.Bornstein and http://www.mono-project.com/Main_Page for more 
+	information.
+
+Last Updated:
+11/March/2005
+			

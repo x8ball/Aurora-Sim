@@ -1,0 +1,22 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIMLBot", "AIMLBot.csproj", "{C3DE5678-83F6-4BD9-887A-598ACE8D5624}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+		Description = A C# library that implements an AIML based chatter-bot.
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{C3DE5678-83F6-4BD9-887A-598ACE8D5624}.Debug.ActiveCfg = Debug|.NET
+		{C3DE5678-83F6-4BD9-887A-598ACE8D5624}.Debug.Build.0 = Debug|.NET
+		{C3DE5678-83F6-4BD9-887A-598ACE8D5624}.Release.ActiveCfg = Release|.NET
+		{C3DE5678-83F6-4BD9-887A-598ACE8D5624}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
