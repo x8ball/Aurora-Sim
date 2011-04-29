@@ -53,5 +53,7 @@ namespace Aurora.BotManager
         void botFindPath (string bot, LSL_Vector startPos, LSL_Vector endPos);
         void botSendChatMessage (string bot, string message, int sayType);
         void botSetShouldFly (string keyOfBot, int ShouldFly);
+        string botGetLocation(string bot);
+        void botAnimate(string bot, string AnimationUUID);
     }
 }

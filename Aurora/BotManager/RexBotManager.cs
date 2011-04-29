@@ -332,6 +332,7 @@ namespace Aurora.BotManager
             if (m_bots.TryGetValue (botID, out bot))
             {
                 bot.SendChatMessage (sayType, message);
+                
             }
         }
 

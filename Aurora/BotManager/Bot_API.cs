@@ -140,6 +140,29 @@ namespace Aurora.BotManager
         {
             get { return m_host.ParentEntity.Scene; }
         }
+        public string botGetLocation(string bot)
+        {
+            //m_host.
+            //m_host.ParentEntity.Scene.EventManager.OnChatFromWorld 
+            
+            return "<1,1,0>";
+        }
+
+        public void botAnimate(string bot, string AnimationUUID)
+        {
+            //this.World.SceneGraph.ForEachScenePresence(delegate(IScenePresence sp)
+            //sp.CrossSittingAgent(IClientAPI i.e. bot, UUID (of poseball))
+            m_host.ParentEntity.Scene.ForEachScenePresence(delegate(IScenePresence sp)
+            {
+                // this should be the bot id
+                if (sp.UUID == UUID.Parse(bot))
+                {
+                    //sp.CrossSittingAgent(this, UUID.Parse(bot));
+                   sp.Animator.AddAnimation(UUID.Parse(AnimationUUID), UUID.Zero);
+                }
+            });
+           
+        }
 
         public string botCreateBot(string FirstName, string LastName, string appearanceToClone)
         {
@@ -245,6 +268,21 @@ namespace Aurora.BotManager
             IBotManager manager = World.RequestModuleInterface<IBotManager> ();
             if (manager != null)
                 manager.SendChatMessage (UUID.Parse (bot), message, sayType);
+            
+
+         //        Whisper = 0,
+        //Say = 1,
+        //Shout = 2,
+        //ObsoleteSay = 3, // 3 is an obsolete version of Say
+        //StartTyping = 4,
+        //StopTyping = 5,
+        //DebugChannel = 6,
+        //Region = 7,
+        //Owner = 8,
+        //Custom = 10,
+        //SayTo = 11,
+        //Broadcast = 0xFF
+            
         }
     }
 }

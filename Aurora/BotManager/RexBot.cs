@@ -35,6 +35,7 @@ using OpenSim.Framework.Client;
 using System.Diagnostics;
 using Aurora.Framework;
 using System.IO;
+using AIMLBot;
 
 namespace Aurora.BotManager
 {
@@ -59,6 +60,11 @@ namespace Aurora.BotManager
         private Scene m_scene;
         private IScenePresence m_scenePresence;
         private AgentCircuitData m_circuitData;
+
+        /// <summary>
+        /// The AIML bot object
+        /// </summary>
+        private cBot myBot;
 
         private RexBotState m_currentState = RexBotState.Idle;
         public RexBotState State
@@ -181,6 +187,10 @@ namespace Aurora.BotManager
             m_startTime.Elapsed += (startTime_Elapsed);
 
             UniqueId++;
+
+            //initialize AIMLbot code
+            myBot = new cBot(false);
+
         }
 
         #region Initialize/Close
@@ -1229,12 +1239,47 @@ namespace Aurora.BotManager
 
         public void SendChatMessage (string message, byte type, Vector3 fromPos, string fromName, UUID fromAgentID, byte source, byte audible)
         {
-            
+
+            //In order to avoid infinite loops we should use equivalent of this from radegast - thanks to latif khalifa, an awesome dude
+            //if (e.SourceType != ChatSourceType.Agent || e.FromName == Client.Self.Name || e.Message.Trim().Length == 0) return;
+            String fromNameLower = fromName.ToLower();
+            String firstNameLower = m_firstName.ToLower();
+            String lastNameLower = m_lastName.ToLower();
+            String NameLower = firstNameLower + " " + lastNameLower;
+            if (fromNameLower.Contains(NameLower) || message.Length==0 || source!=(byte)ChatSourceType.Agent )
+            {
+                return;
+            }
+
+
+            //dan - this is where the code should go to intercept chat messages
+            // and then call the pandorabot or AIML type code.
+            //there is also another SendChatMessage which is called with less
+            //parameters which appears to be the one called from Bot_API
+            //so you can send out messages so what would probably have to happen
+            //is you intercept here then call the other one with the response
+            //public void SendChatMessage (int sayType, string message)
+
+            //        private string m_firstName = "Default";
+            //private string m_lastName = "RexBot" + UniqueId.ToString();
+
+           // if (m_firstName.ToLower() == "test")
+           // {
+           //     this.SendChatMessage(1, "you talking to me?");
+           // }
+            // does indeed cause an infinite loop
+
+            // grab the reply from AIMLBot
+            //cResponse reply = myBot.chat(this.textBoxInput.Text,"user");
+            cResponse reply = myBot.chat(message, NameLower);
+
+            //this.textBoxOutput.Text+="Alice: "+reply.getOutput()+System.Environment.NewLine;
+            this.SendChatMessage(1, reply.getOutput());
         }
 
         public void SendInstantMessage (GridInstantMessage im)
         {
-            
+            //dan - this is probably where the code should go to intercept IMs to the bots.
         }
 
         public void SendGenericMessage (string method, List<string> message)
