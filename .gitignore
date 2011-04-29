@@ -69,3 +69,5 @@ Makefile.local
 bin/.version
 compile.bat
 
+
+/bin
