@@ -142,22 +142,29 @@ namespace Aurora.BotManager
         }
         public string botGetLocation(string bot)
         {
-            //m_host.
-            //m_host.ParentEntity.Scene.EventManager.OnChatFromWorld 
+           Vector3 botpos = Vector3.Zero; //set default botpos to zero
+                
             
-            return "<1,1,0>";
-        }
-
-        public void botAnimate(string bot, string AnimationUUID)
-        {
-            //this.World.SceneGraph.ForEachScenePresence(delegate(IScenePresence sp)
-            //sp.CrossSittingAgent(IClientAPI i.e. bot, UUID (of poseball))
             m_host.ParentEntity.Scene.ForEachScenePresence(delegate(IScenePresence sp)
             {
                 // this should be the bot id
                 if (sp.UUID == UUID.Parse(bot))
                 {
-                    //sp.CrossSittingAgent(this, UUID.Parse(bot));
+                    //here you need to get the bot position and return it
+                    botpos = sp.AbsolutePosition;
+                }
+            });
+
+            return botpos.ToString();
+        }
+
+        public void botAnimate(string bot, string AnimationUUID)
+        {
+            m_host.ParentEntity.Scene.ForEachScenePresence(delegate(IScenePresence sp)
+            {
+                // this should be the bot id
+                if (sp.UUID == UUID.Parse(bot))
+                {
                    sp.Animator.AddAnimation(UUID.Parse(AnimationUUID), UUID.Zero);
                 }
             });
