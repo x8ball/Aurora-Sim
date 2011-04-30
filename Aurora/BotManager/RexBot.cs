@@ -42,7 +42,8 @@ namespace Aurora.BotManager
     public class RexBot : IRexBot, IClientAPI, IClientCore
     {
         #region Declares
-        public enum RexBotState { Idle, Walking, Flying, Unknown }
+        //this is misnamed: it's really a moving state
+        public enum RexBotState { Idle, Walking, Flying, Unknown, Following, Hiding }
 
         private static readonly log4net.ILog m_log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private Vector3 DEFAULT_START_POSITION = new Vector3(128, 128, 128);
@@ -113,6 +114,47 @@ namespace Aurora.BotManager
         private NavMeshInstance m_navMesh;
 
         private float m_RexCharacterSpeedMod = 1.0f;
+
+        //<game AI declares>
+        public enum AttackingState { Attacking, Defending, Retreating, Waiting }
+        public enum EmotionalState { Relaxed, Interested, Jumpy, Agitated, Angry, Enraged, Happy, Smiling, Sad, Scared }
+        private int m_BotHitPoints; 
+
+        //Melee Attack Animations: use a list for this
+        //Melee Defend Animations: use a list for this
+        //Melee Draw Weapon Animations: use a list for this
+        //Melee Replace Weapon Animations: use a list for this
+        //Unarmed combat hand to hand animations
+        //Projectile weapon animations
+        //Projectile weapon draw weapon animations
+        //Projectile weapon reload weapon animations
+        //Projectile weapon replace weapon animations
+
+        //Face animations
+        //Anger
+        //Happy
+        //Smiling etc etc
+       
+        //ZHAO II Type Animations
+        //[ Standing ]
+        //[ Walking ]
+        //[ Sitting ]
+        //[ Sitting On Ground ]
+        //[ Crouching ]
+        //[ Crouch Walking ]
+        //[ Landing ]
+        //[ Standing Up ]
+        //[ Falling ]
+        //[ Flying Down ]
+        //[ Flying Up ]
+        //[ Flying ]
+        //[ Flying Slow ]
+        //[ Hovering ]
+        //[ Jumping ]
+        //[ Pre Jumping ]
+        //[ Running ]
+
+        //</game AI declares>
 
         public float RexCharacterSpeedMod
         {
@@ -190,6 +232,8 @@ namespace Aurora.BotManager
 
             //initialize AIMLbot code
             myBot = new cBot(false);
+
+            m_BotHitPoints = 100;
 
         }
 
