@@ -336,6 +336,20 @@ namespace Aurora.BotManager
             }
         }
 
+        public IRexBot GetBot(UUID botID)
+        {
+            //return m_bots.TryGetValue
+            IRexBot bot;
+            if (m_bots.TryGetValue(botID, out bot))
+            {
+                if (bot != null) 
+                {
+                return bot;
+                }
+            }
+            return null;
+        }
+
         #endregion
 
         #region IBotManager Members

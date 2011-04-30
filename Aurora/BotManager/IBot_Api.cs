@@ -55,5 +55,7 @@ namespace Aurora.BotManager
         void botSetShouldFly (string keyOfBot, int ShouldFly);
         string botGetLocation(string bot);
         void botAnimate(string bot, string AnimationUUID);
+        void botSetState(string bot, string State);
+        string botGetState(string bot);
     }
 }

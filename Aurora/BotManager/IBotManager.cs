@@ -39,6 +39,7 @@ namespace Aurora.BotManager
         #endregion
 
         void SetBotShouldFly (UUID Bot, bool shouldFly);
+        IRexBot GetBot(UUID botID);
     }
 
     /// <summary>

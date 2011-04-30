@@ -158,6 +158,79 @@ namespace Aurora.BotManager
             return botpos.ToString();
         }
 
+        public void botSetState(string bot, string State)
+        {
+            //this is a test case of being able to get access to a property
+            //of the actual rexbot itself through the botAPI       
+            IBotManager manager = World.RequestModuleInterface<IBotManager>();
+            if (manager != null)
+            {
+                RexBot rxbot;
+                rxbot = (RexBot)manager.GetBot(UUID.Parse(bot));
+                //follow up with this
+                switch (State.ToLower())
+                {
+                    case "walking":
+                        rxbot.State = RexBot.RexBotState.Walking;
+                        break;
+                    case "idle":
+                        rxbot.State = RexBot.RexBotState.Idle;
+                        break;
+                    case "flying":
+                        rxbot.State = RexBot.RexBotState.Flying;
+                        break;
+
+                    default:
+                        rxbot.State = RexBot.RexBotState.Unknown;
+                        break;
+                }
+            }
+
+        }
+
+        public string botGetState(string bot)
+        {
+            //test case of getting the state back
+            //interestingly it usually returns idle
+            //even when it's been set to walking by me
+            //externally. Which is not a total fail
+            //because it means I'm getting something
+            //back out of the class rather than the default
+            //unknown which would be returned if it was
+            //failing. Anyways this is a test case only
+            string strState="unknown";
+            
+                    IBotManager manager = World.RequestModuleInterface<IBotManager>();
+                    if (manager != null)
+                    {
+
+                        RexBot rxbot;
+                        rxbot = (RexBot)manager.GetBot(UUID.Parse(bot));
+                        RexBot.RexBotState  st = rxbot.State;
+                 
+                        switch (st)
+                        {
+                            case RexBot.RexBotState.Walking:
+                                strState = "walking";
+                                break;
+                            case RexBot.RexBotState.Idle:
+                                strState = "idle";
+                                break;
+                            case RexBot.RexBotState.Flying:
+                                strState = "flying";
+                                break;
+
+                            default:
+                                strState = "unknown";
+                                break;
+                        }
+
+                    }
+                
+            return strState;
+
+        }
+
         public void botAnimate(string bot, string AnimationUUID)
         {
             m_host.ParentEntity.Scene.ForEachScenePresence(delegate(IScenePresence sp)
