@@ -121,7 +121,7 @@ namespace Aurora.BotManager
         public enum AttackingState { Attacking, Defending, Retreating, Waiting }
         public enum EmotionalState { Relaxed, Interested, Jumpy, Agitated, Angry, Enraged, Happy, Smiling, Sad, Scared }
         private int m_BotHitPoints;
-        public bool m_bAttack = true;
+        private bool m_bAttack = false;
 
         //Melee Attack Animations: use a list for this
         //Melee Defend Animations: use a list for this
@@ -132,6 +132,10 @@ namespace Aurora.BotManager
         //Projectile weapon draw weapon animations
         //Projectile weapon reload weapon animations
         //Projectile weapon replace weapon animations
+
+        private string m_sMeleeAttackAnimationUUID;
+        private string m_sProjectileAttackAnimationUUID;
+        private string m_sDieAnimationUUID;
 
         //Face animations
         //Anger
@@ -635,6 +639,13 @@ namespace Aurora.BotManager
             m_autoMove = false;
         }
 
+        public void SpawnAttackBot(string avatarName)
+        {
+            m_bAttack = true;
+            FollowAvatar(avatarName);
+        
+        }
+
         public void StopFollowAvatar (string avatarName)
         {
             FollowSP = null; //null out everything
@@ -658,6 +669,73 @@ namespace Aurora.BotManager
                 else if (node.Mode == TravelMode.Walk)
                     WalkTo(node.Position);
             }
+        }
+
+        //this is called to read the animation UUIDs into the appropriate properties
+        //so they can be called later... it grabs them out of a ZHAO II card
+        //which is a text file which will be found in the bin\AO\ directory...
+        private void LoadAnimationUUIDs()
+        {
+            string sDummy; //remove the following three lines once code goes in here
+            sDummy = "dummy";
+            sDummy = sDummy + ' ';
+            string sAuroraBinDirectory = Environment.CurrentDirectory; //this returns a path to wherever the bin directory is
+            string sAOPath = sAuroraBinDirectory + "\\AO\\DefaultAttackAO.txt";
+            try
+            {
+                StreamReader reader = new StreamReader(sAOPath);
+                string sfile = reader.ReadToEnd();
+                reader.Close();
+                reader.Dispose();
+
+                char[] delimiterChars = {'\r'};
+                string[] ZHAONotecardLines = sfile.Split(delimiterChars);
+                
+              
+                foreach (string sZHAONoteCardLine in ZHAONotecardLines)
+                {
+                    int iUUIDstart = sZHAONoteCardLine.IndexOf(']');
+                    string sSingleAnimationUUID = sZHAONoteCardLine.Substring(iUUIDstart+1, sZHAONoteCardLine.Length - iUUIDstart-1);
+                    string sAnimationName = sZHAONoteCardLine.Substring(1, iUUIDstart);
+                    if (sAnimationName.StartsWith("["))
+                    {
+                        sAnimationName = sAnimationName.Substring(1, sAnimationName.Length-1);
+                    }
+                    if (sAnimationName.EndsWith("]"))
+                    {
+                        sAnimationName = sAnimationName.Substring(0,sAnimationName.Length-1);
+                    }
+                    switch (sAnimationName.ToLower())
+                    {
+                        case "meleeattack":
+                            m_sMeleeAttackAnimationUUID = sSingleAnimationUUID;
+                            break;
+
+                        case "projectileattack":
+                            m_sProjectileAttackAnimationUUID = sSingleAnimationUUID;
+                            break;
+
+                        case "die":
+                            m_sDieAnimationUUID = sSingleAnimationUUID;
+                            break;
+
+                        default:
+                                //no idea what the user put for the animation type so
+                                //use whatever UUID is there for all combat animations
+                                m_sMeleeAttackAnimationUUID = sSingleAnimationUUID;
+                                m_sProjectileAttackAnimationUUID = sSingleAnimationUUID;
+                                m_sDieAnimationUUID = sSingleAnimationUUID;
+                                break;
+                    }
+
+                }
+
+            }
+            catch
+            {
+                //do stuff here
+            }
+            
         }
 
         /// <summary>
@@ -727,18 +805,13 @@ namespace Aurora.BotManager
                             }
                             else
                             {
-                                //we should attack
-                                //do the attack animation...
-                                string sAttackAnimationUUID;
-                                //this UUID will be whatever the UUID is for the particular attack animation
-                                //this will vary depending on the bot type etc but for now this is a test
-                                //and we have hard code the standard SL animation punch one two as the attack
-                                //the following UUID is the one generated by the aurora sim when I uploaded
-                                //the SL standard animation for punch one-two. You should use whatever UUID
-                                //your particular sim generates for whatever animation you want to use for attack
-                                sAttackAnimationUUID = "c0c9c3d0-3b12-4357-b4f5-be719b603a35";
-                                m_scenePresence.Animator.RemoveAnimation(UUID.Parse(sAttackAnimationUUID));
-                                m_scenePresence.Animator.AddAnimation(UUID.Parse(sAttackAnimationUUID), UUID.Zero);
+                                 //if the attack animations haven't been set pick up the attackanimationid from the combat zhao card
+                                //this particular test is an ugly hack but it'll do for now
+                                if (m_sMeleeAttackAnimationUUID==""||m_sMeleeAttackAnimationUUID==null)
+                                    LoadAnimationUUIDs();
+
+                                m_scenePresence.Animator.RemoveAnimation(UUID.Parse(m_sMeleeAttackAnimationUUID));
+                                m_scenePresence.Animator.AddAnimation(UUID.Parse(m_sMeleeAttackAnimationUUID), UUID.Zero);
 
                                 //now we should run the code to attack the avatar and cause damage
                                 //

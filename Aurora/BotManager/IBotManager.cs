@@ -60,5 +60,6 @@ namespace Aurora.BotManager
         void FollowAvatar (string avatarName);
         void StopFollowAvatar (string avatarName);
         void SendChatMessage (int sayType, string message);
+        void SpawnAttackBot(string avatarName);
     }
 }

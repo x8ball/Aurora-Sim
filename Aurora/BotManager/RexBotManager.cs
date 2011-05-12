@@ -307,6 +307,8 @@ namespace Aurora.BotManager
             }
         }
 
+
+
         /// <summary>
         /// Stops following the given user
         /// </summary>

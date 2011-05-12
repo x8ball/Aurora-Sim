@@ -321,6 +321,8 @@ namespace Aurora.BotManager
                 manager.FollowAvatar (UUID.Parse (bot), avatarName);
         }
 
+
+
         public void botStopFollowAvatar (string bot, string avatarName)
         {
             IBotManager manager = World.RequestModuleInterface<IBotManager> ();
