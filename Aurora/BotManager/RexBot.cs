@@ -35,7 +35,9 @@ using OpenSim.Framework.Client;
 using System.Diagnostics;
 using Aurora.Framework;
 using System.IO;
-using AIMLBot;
+//<AIMLBot>
+//using AIMLBot;
+//</AIMLBot>
 using OpenSim.Region.CoreModules.Avatar;
 using OpenSim.Region.Framework.Interfaces;
 
@@ -238,7 +240,9 @@ namespace Aurora.BotManager
             UniqueId++;
 
             //initialize AIMLbot code
-            myBot = new cBot(false);
+            //<AIMLBot>
+            //myBot = new cBot(false);
+            //</AIMLBot>
 
             m_BotHitPoints = 100;
 
@@ -1438,10 +1442,15 @@ namespace Aurora.BotManager
 
             // grab the reply from AIMLBot
             //cResponse reply = myBot.chat(this.textBoxInput.Text,"user");
-            cResponse reply = myBot.chat(message, NameLower);
+            //<AIMLBot>
+            //cResponse reply = myBot.chat(message, NameLower);
+            //</AIMLBot>
 
             //this.textBoxOutput.Text+="Alice: "+reply.getOutput()+System.Environment.NewLine;
-            this.SendChatMessage(1, reply.getOutput());
+            //<AIMLBot>
+            //this.SendChatMessage(1, reply.getOutput());
+            this.SendChatMessage(1, "chat disabled");
+            //</AIMLBot>
         }
 
         public void SendInstantMessage (GridInstantMessage im)
