@@ -69,8 +69,9 @@ namespace Aurora.BotManager
         /// <summary>
         /// The AIML bot object
         /// </summary>
-        private cBot myBot;
-
+        //<AIMLBot>
+        //private cBot myBot;
+        //</AIMLBot>
         private RexBotState m_currentState = RexBotState.Idle;
         public RexBotState State
         {
@@ -643,7 +644,7 @@ namespace Aurora.BotManager
             m_autoMove = false;
         }
 
-        public void SpawnAttackBot(string avatarName)
+        public void SetAttackBotToFollow(string avatarName)
         {
             m_bAttack = true;
             FollowAvatar(avatarName);

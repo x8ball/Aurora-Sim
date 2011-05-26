@@ -57,5 +57,6 @@ namespace Aurora.BotManager
         void botAnimate(string bot, string AnimationUUID);
         void botSetState(string bot, string State);
         string botGetState(string bot);
+        string botSpawnAttackBot(string FirstName, string LastName, string appearanceToClone, string AvatarToFollowName);
     }
 }

@@ -105,6 +105,20 @@ namespace Aurora.BotManager
             return m_scene.AvatarService.GetAppearance (target);
         }
 
+        public UUID SpawnAttackBot(string FirstName, string LastName, IScene s, UUID cloneAppearanceFrom, string AvatarToFollowName)
+        {
+            UUID uuidOfBot = CreateAvatar(FirstName, LastName, s, cloneAppearanceFrom);
+            IRexBot bot;
+            if (m_bots.TryGetValue(uuidOfBot, out bot))
+            {
+               bot.SetAttackBotToFollow(AvatarToFollowName);
+            }
+            return uuidOfBot;
+        
+        }
+
+
+
         /// <summary>
         /// Creates a new bot inworld
         /// </summary>

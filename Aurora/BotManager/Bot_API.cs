@@ -244,6 +244,18 @@ namespace Aurora.BotManager
            
         }
 
+        public string botSpawnAttackBot(string FirstName, string LastName, string appearanceToClone, string AvatarToFollowName)
+        {
+            UUID botUUID;
+            IBotManager manager = World.RequestModuleInterface<IBotManager>();
+            if (manager != null)
+            {
+                botUUID = manager.SpawnAttackBot(FirstName, LastName, m_host.ParentEntity.Scene, UUID.Parse(appearanceToClone), AvatarToFollowName);
+                return botUUID.ToString();
+            }
+            return "";
+        }
+
         public string botCreateBot(string FirstName, string LastName, string appearanceToClone)
         {
             IBotManager manager = World.RequestModuleInterface<IBotManager>();

@@ -40,6 +40,7 @@ namespace Aurora.BotManager
 
         void SetBotShouldFly (UUID Bot, bool shouldFly);
         IRexBot GetBot(UUID botID);
+        UUID SpawnAttackBot(string FirstName, string LastName, IScene s, UUID cloneAppearanceFrom, string AvatarToFollowName);
     }
 
     /// <summary>
@@ -60,6 +61,7 @@ namespace Aurora.BotManager
         void FollowAvatar (string avatarName);
         void StopFollowAvatar (string avatarName);
         void SendChatMessage (int sayType, string message);
-        void SpawnAttackBot(string avatarName);
+        void SetAttackBotToFollow(string avatarName);
+        
     }
 }
