@@ -41,6 +41,9 @@ using System.IO;
 using OpenSim.Region.CoreModules.Avatar;
 using OpenSim.Region.Framework.Interfaces;
 
+//this is included to get IInventory to work
+using OpenSim.Services.Interfaces;
+
 namespace Aurora.BotManager
 {
     public class RexBot : IRexBot, IClientAPI, IClientCore
@@ -690,14 +693,110 @@ namespace Aurora.BotManager
             }
         }
 
+        //this is a second implementation of the ZHAO II combat animations card reading code
+        //this time hopefully what it will do is find the combat ZHAO card in the inventory
+        //of the originating avatar from whence we copied the appearance.
+        //We're going to assume that the notecard is called "DefaultAttackAO" as in the
+        //read from directory code
+        private void LoadAnimationUUIDsFromInventory()
+        {
+
+            //IInventoryService service = m_registry.RequestModuleInterface<IINnventoryService>(); 
+            //InventoryFolderBase folder = service.GetFolderForType(USERID, AssetType.Notecard);
+            //List<InventoryItemBase> items = service.GetFolderItems(USERID, folder.ID);
+            //foreach(inventoryItemBase item in items) { if(item.Name == "NAMEHERE
+            //) { AssetBase asset = m_registry.RequestModuleInterface<IAssetService>().Get(item.AssetID.ToString();
+            //string data = Utils.BytesToString(asset.Data); } }
+            //it'll find the notecard by the given name in the Notecards folder
+
+           UUID useridUUID = UUID.Parse(m_sSourceAvatarUUID);
+
+           IInventoryService inventoryService = m_scene.InventoryService;
+           InventoryFolderBase folder = inventoryService.GetFolderForType(useridUUID, AssetType.Notecard);
+           List<InventoryItemBase> items = inventoryService.GetFolderItems(useridUUID, folder.ID);
+           
+            //<x8ball>
+            // what is "inventoryItemBase"? That's the missing piece to get this code to at least compile.
+            //</x8ball>
+            
+            //foreach(inventoryItemBase item in items) { 
+           //    if(item.Name == "NAMEHERE")
+           //    { 
+           //        AssetBase asset = m_scene.RequestModuleInterface<IAssetService>().Get(item.AssetID.ToString());
+           //        string data = Utils.BytesToString(asset.Data); 
+           //    } 
+           //}            
+             
+            
+            // following code needs to be hacked up to get it to work with the above foreach statement
+
+            string sAuroraBinDirectory = Environment.CurrentDirectory; //this returns a path to wherever the bin directory is
+            string sAOPath = sAuroraBinDirectory + "\\AO\\DefaultAttackAO.txt";
+            try
+            {
+                StreamReader reader = new StreamReader(sAOPath);
+                string sfile = reader.ReadToEnd();
+                reader.Close();
+                reader.Dispose();
+
+                char[] delimiterChars = { '\r' };
+                string[] ZHAONotecardLines = sfile.Split(delimiterChars);
+
+
+                foreach (string sZHAONoteCardLine in ZHAONotecardLines)
+                {
+                    int iUUIDstart = sZHAONoteCardLine.IndexOf(']');
+                    string sSingleAnimationUUID = sZHAONoteCardLine.Substring(iUUIDstart + 1, sZHAONoteCardLine.Length - iUUIDstart - 1);
+                    string sAnimationName = sZHAONoteCardLine.Substring(1, iUUIDstart);
+                    if (sAnimationName.StartsWith("["))
+                    {
+                        sAnimationName = sAnimationName.Substring(1, sAnimationName.Length - 1);
+                    }
+                    if (sAnimationName.EndsWith("]"))
+                    {
+                        sAnimationName = sAnimationName.Substring(0, sAnimationName.Length - 1);
+                    }
+                    switch (sAnimationName.ToLower())
+                    {
+                        case "meleeattack":
+                            m_sMeleeAttackAnimationUUID = sSingleAnimationUUID;
+                            break;
+
+                        case "projectileattack":
+                            m_sProjectileAttackAnimationUUID = sSingleAnimationUUID;
+                            break;
+
+                        case "die":
+                            m_sDieAnimationUUID = sSingleAnimationUUID;
+                            break;
+
+                        default:
+                            //no idea what the user put for the animation type so
+                            //use whatever UUID is there for all combat animations
+                            m_sMeleeAttackAnimationUUID = sSingleAnimationUUID;
+                            m_sProjectileAttackAnimationUUID = sSingleAnimationUUID;
+                            m_sDieAnimationUUID = sSingleAnimationUUID;
+                            break;
+                    }
+
+                }
+
+            }
+            catch
+            {
+                //do stuff here
+            }
+        
+
+
+        }
+
+
         //this is called to read the animation UUIDs into the appropriate properties
         //so they can be called later... it grabs them out of a ZHAO II card
         //which is a text file which will be found in the bin\AO\ directory...
         private void LoadAnimationUUIDs()
         {
-            string sDummy; //remove the following three lines once code goes in here
-            sDummy = "dummy";
-            sDummy = sDummy + ' ';
             string sAuroraBinDirectory = Environment.CurrentDirectory; //this returns a path to wherever the bin directory is
             string sAOPath = sAuroraBinDirectory + "\\AO\\DefaultAttackAO.txt";
             try
