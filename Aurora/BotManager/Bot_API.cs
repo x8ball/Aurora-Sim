@@ -244,6 +244,25 @@ namespace Aurora.BotManager
            
         }
 
+        public void botCauseDamage(string sBotName, float fdamage)
+        {
+
+            m_host.ParentEntity.Scene.ForEachScenePresence(delegate(IScenePresence sp)
+            {
+                // this should be the correct bot by name
+                if (sp.Name == sBotName)
+                {
+                    ICombatPresence cp = sp.RequestModuleInterface<ICombatPresence>();
+                    if (cp.Health > 0)
+                    {
+                         cp.Health = cp.Health - fdamage;
+                         cp.IncurDamage(1, fdamage, sp.UUID);
+                    }
+
+                }
+            });
+        }
+
         public string botSpawnAttackBot(string FirstName, string LastName, string appearanceToClone, string AvatarToFollowName)
         {
             UUID botUUID;

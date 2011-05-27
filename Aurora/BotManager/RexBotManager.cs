@@ -148,6 +148,7 @@ namespace Aurora.BotManager
             m_character.LastName = LastName;
             m_aCircuitData.AgentID = m_character.AgentId;
             m_aCircuitData.Appearance.Owner = m_character.AgentId;
+            m_character.SetSourceAvatarUUID(cloneAppearanceFrom.ToString());
 
             scene.AuthenticateHandler.AgentCircuits.Add (m_character.CircuitCode, m_aCircuitData);
             //This adds them to the scene and sets them inworld
@@ -156,6 +157,7 @@ namespace Aurora.BotManager
             m_character.SendRegionHandshake (scene.RegionInfo, null);
             IScenePresence SP = scene.GetScenePresence (m_character.AgentId);
             SP.MakeRootAgent (false);
+            SP.Invulnerable = false;
 
 
             IAvatarAppearanceModule appearance = SP.RequestModuleInterface<IAvatarAppearanceModule> ();

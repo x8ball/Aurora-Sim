@@ -139,6 +139,20 @@ namespace Aurora.BotManager
         private string m_sMeleeAttackAnimationUUID;
         private string m_sProjectileAttackAnimationUUID;
         private string m_sDieAnimationUUID;
+        private string m_sReceiveBlowFromFrontAnimationUUID;
+        private string m_sReceiveBlowFromBackAnimationUUID;
+        private string m_sReceiveBlowFromRightSideAnimationUUID;
+        private string m_sReceiveBlowFromLeftSideAnimationUUID;
+        private string m_sGetBackUpAgainAnimationUUID;
+
+        //this is the UUID of the avatar from where we copied the appearance
+        private string m_sSourceAvatarUUID;
+
+        public void SetSourceAvatarUUID(string sSourceAvatarUUID)
+        {
+            m_sSourceAvatarUUID = sSourceAvatarUUID;
+        }
+
 
         //Face animations
         //Anger

@@ -58,5 +58,6 @@ namespace Aurora.BotManager
         void botSetState(string bot, string State);
         string botGetState(string bot);
         string botSpawnAttackBot(string FirstName, string LastName, string appearanceToClone, string AvatarToFollowName);
+        void botCauseDamage(string sBotName, float fdamage);
     }
 }
