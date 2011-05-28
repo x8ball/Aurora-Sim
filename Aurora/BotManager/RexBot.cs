@@ -41,8 +41,11 @@ using System.IO;
 using OpenSim.Region.CoreModules.Avatar;
 using OpenSim.Region.Framework.Interfaces;
 
-//this is included to get IInventory to work
+//the following is included to get IInventory to work
 using OpenSim.Services.Interfaces;
+//the following is included so we can parse easier
+using System.Text.RegularExpressions;
+
 
 namespace Aurora.BotManager
 {
@@ -701,93 +704,85 @@ namespace Aurora.BotManager
         private void LoadAnimationUUIDsFromInventory()
         {
 
-            //IInventoryService service = m_registry.RequestModuleInterface<IINnventoryService>(); 
-            //InventoryFolderBase folder = service.GetFolderForType(USERID, AssetType.Notecard);
-            //List<InventoryItemBase> items = service.GetFolderItems(USERID, folder.ID);
-            //foreach(inventoryItemBase item in items) { if(item.Name == "NAMEHERE
-            //) { AssetBase asset = m_registry.RequestModuleInterface<IAssetService>().Get(item.AssetID.ToString();
-            //string data = Utils.BytesToString(asset.Data); } }
-            //it'll find the notecard by the given name in the Notecards folder
-
            UUID useridUUID = UUID.Parse(m_sSourceAvatarUUID);
 
            IInventoryService inventoryService = m_scene.InventoryService;
            InventoryFolderBase folder = inventoryService.GetFolderForType(useridUUID, AssetType.Notecard);
-           List<InventoryItemBase> items = inventoryService.GetFolderItems(useridUUID, folder.ID);
-           
-            //<x8ball>
-            // what is "inventoryItemBase"? That's the missing piece to get this code to at least compile.
-            //</x8ball>
+           List<InventoryItemBase> items = inventoryService.GetFolderItems(useridUUID, folder.ID);           
             
-            //foreach(inventoryItemBase item in items) { 
-           //    if(item.Name == "NAMEHERE")
-           //    { 
-           //        AssetBase asset = m_scene.RequestModuleInterface<IAssetService>().Get(item.AssetID.ToString());
-           //        string data = Utils.BytesToString(asset.Data); 
-           //    } 
-           //}            
-             
-            
-            // following code needs to be hacked up to get it to work with the above foreach statement
-
-            string sAuroraBinDirectory = Environment.CurrentDirectory; //this returns a path to wherever the bin directory is
-            string sAOPath = sAuroraBinDirectory + "\\AO\\DefaultAttackAO.txt";
-            try
+            foreach(InventoryItemBase item in items) 
             {
-                StreamReader reader = new StreamReader(sAOPath);
-                string sfile = reader.ReadToEnd();
-                reader.Close();
-                reader.Dispose();
+                if (item.Name.ToLower() == "aodefaultattackao")
+               { 
+                   AssetBase asset = m_scene.RequestModuleInterface<IAssetService>().Get(item.AssetID.ToString());
+                   string sNotecardText = Utils.BytesToString(asset.Data);
+                   //form up the regular expression
+                   //i.e. [somename]8-4-4-4-12 uuid
+                    Regex rexp = new Regex(@"\[\w+\]\w{8,8}-\w{4,4}-\w{4,4}-\w{4,4}-\w{12,12}");
+                   //find all the matches for the pattern in the notecard text
+                   //and put them into a list
+                   MatchCollection MatchList = rexp.Matches(sNotecardText);
+                   foreach (Match animMatch in MatchList)
+                   {
+                       //<parse out the UUID>
 
-                char[] delimiterChars = { '\r' };
-                string[] ZHAONotecardLines = sfile.Split(delimiterChars);
+                       string sZHAONoteCardLine = animMatch.ToString();
+
+                       int iUUIDstart = sZHAONoteCardLine.IndexOf(']');
+                       string sSingleAnimationUUID = sZHAONoteCardLine.Substring(iUUIDstart + 1, sZHAONoteCardLine.Length - iUUIDstart - 1);
+                       string sAnimationName = sZHAONoteCardLine.Substring(1, iUUIDstart);
+                       if (sAnimationName.StartsWith("["))
+                       {
+                           sAnimationName = sAnimationName.Substring(1, sAnimationName.Length - 1);
+                       }
+                       if (sAnimationName.EndsWith("]"))
+                       {
+                           sAnimationName = sAnimationName.Substring(0, sAnimationName.Length - 1);
+                       }
+                       switch (sAnimationName.ToLower())
+                       {
+                           case "meleeattack":
+                               m_sMeleeAttackAnimationUUID = sSingleAnimationUUID;
+                               break;
+
+                           case "projectileattack":
+                               m_sProjectileAttackAnimationUUID = sSingleAnimationUUID;
+                               break;
+
+                           case "die":
+                               m_sDieAnimationUUID = sSingleAnimationUUID;
+                               break;
+
+                          case "blowfromfront":
+                               m_sReceiveBlowFromFrontAnimationUUID = sSingleAnimationUUID;
+                               break;
+                           case "blowfromback":
+                               m_sReceiveBlowFromBackAnimationUUID = sSingleAnimationUUID;
+                               break;
+                           
+                           case "blowfromright":
+                               m_sReceiveBlowFromRightSideAnimationUUID = sSingleAnimationUUID;
+                               break;
+                           case "blowfromleft":
+                               m_sReceiveBlowFromLeftSideAnimationUUID = sSingleAnimationUUID;
+                               break;
+                           case "getbackup":
+                               m_sGetBackUpAgainAnimationUUID = sSingleAnimationUUID;
+                               break;
+
+    
+                           default:
+                               //some other descriptor...
+                               //ignore it
+                               break;
+                       }
 
 
-                foreach (string sZHAONoteCardLine in ZHAONotecardLines)
-                {
-                    int iUUIDstart = sZHAONoteCardLine.IndexOf(']');
-                    string sSingleAnimationUUID = sZHAONoteCardLine.Substring(iUUIDstart + 1, sZHAONoteCardLine.Length - iUUIDstart - 1);
-                    string sAnimationName = sZHAONoteCardLine.Substring(1, iUUIDstart);
-                    if (sAnimationName.StartsWith("["))
-                    {
-                        sAnimationName = sAnimationName.Substring(1, sAnimationName.Length - 1);
-                    }
-                    if (sAnimationName.EndsWith("]"))
-                    {
-                        sAnimationName = sAnimationName.Substring(0, sAnimationName.Length - 1);
-                    }
-                    switch (sAnimationName.ToLower())
-                    {
-                        case "meleeattack":
-                            m_sMeleeAttackAnimationUUID = sSingleAnimationUUID;
-                            break;
+                       //</parse out the UUID>
+                   }
 
-                        case "projectileattack":
-                            m_sProjectileAttackAnimationUUID = sSingleAnimationUUID;
-                            break;
-
-                        case "die":
-                            m_sDieAnimationUUID = sSingleAnimationUUID;
-                            break;
-
-                        default:
-                            //no idea what the user put for the animation type so
-                            //use whatever UUID is there for all combat animations
-                            m_sMeleeAttackAnimationUUID = sSingleAnimationUUID;
-                            m_sProjectileAttackAnimationUUID = sSingleAnimationUUID;
-                            m_sDieAnimationUUID = sSingleAnimationUUID;
-                            break;
-                    }
-
-                }
-
-            }
-            catch
-            {
-                //do stuff here
-            }
-        
-
+               } 
+            }            
 
         }
 
@@ -926,7 +921,7 @@ namespace Aurora.BotManager
                                  //if the attack animations haven't been set pick up the attackanimationid from the combat zhao card
                                 //this particular test is an ugly hack but it'll do for now
                                 if (m_sMeleeAttackAnimationUUID==""||m_sMeleeAttackAnimationUUID==null)
-                                    LoadAnimationUUIDs();
+                                    LoadAnimationUUIDsFromInventory();
 
                                 m_scenePresence.Animator.RemoveAnimation(UUID.Parse(m_sMeleeAttackAnimationUUID));
                                 m_scenePresence.Animator.AddAnimation(UUID.Parse(m_sMeleeAttackAnimationUUID), UUID.Zero);
